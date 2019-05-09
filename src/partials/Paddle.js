@@ -1,25 +1,22 @@
-import {SVG_NS} from '../settings';
+import {SVG_NS, SPEED} from '../settings';
 
 export default class Paddle {
-    constructor() {
-        this.width = 8;
-        this.height = 56;
+    constructor(boardHeight, paddleWidth, paddleHeight, initialX, initialY, keyUp, keyDown) {
+        this.boardHeight = boardHeight;
+        this.paddleWidth = paddleWidth;
+        this.paddleHeight = paddleHeight;
+        this.x = initialX;
+        this.y = initialY;
+        this.score = 0;
+        this.speed = SPEED;
     }
     render(svg){
-        let paddle1 = document.createElementNS(SVG_NS, 'rect');
-        paddle1.setAttributeNS(null, "x", 10);
-        paddle1.setAttributeNS(null, "y", 100);
-        paddle1.setAttributeNS(null, "width", this.width);
-        paddle1.setAttributeNS(null, "height", this.height);
-        paddle1.setAttributeNS(null, "fill", "white");
-        svg.appendChild(paddle1);
-
-        let paddle2 = document.createElementNS(SVG_NS, 'rect');
-        paddle2.setAttributeNS(null, "x", 494);
-        paddle2.setAttributeNS(null, "y", 100);
-        paddle2.setAttributeNS(null, "width", this.width);
-        paddle2.setAttributeNS(null, "height", this.height);
-        paddle2.setAttributeNS(null, "fill", "white");
-        svg.appendChild(paddle2);
+        let paddle = document.createElementNS(SVG_NS, 'rect');
+        paddle.setAttributeNS(null, "x", this.x);
+        paddle.setAttributeNS(null, "y", this.y);
+        paddle.setAttributeNS(null, "width", this.paddleWidth);
+        paddle.setAttributeNS(null, "height", this.paddleHeight);
+        paddle.setAttributeNS(null, "fill", "white");
+        svg.appendChild(paddle);
     }
 }
