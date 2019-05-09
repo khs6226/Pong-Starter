@@ -9,6 +9,24 @@ export default class Paddle {
         this.y = initialY;
         this.score = 0;
         this.speed = SPEED;
+        document.addEventListener("keydown", event => {
+            switch(event.key) {
+                case keyUp:
+                this.moveUp();
+                break;
+                case keyDown:
+                this.moveDown();
+                break;
+            }
+        });
+    }
+    
+    moveUp() { 
+        this.y = Math.max(0, this.y-this.speed);
+        }
+    
+    moveDown() {
+        this.y = Math.min(this.boardHeight-this.paddleHeight, this.y + this.speed);
     }
     render(svg){
         let paddle = document.createElementNS(SVG_NS, 'rect');
