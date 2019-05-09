@@ -1,20 +1,22 @@
-import {SVG_NS, PADDLE_HEIGHT, PADDLE_WIDTH, BOARD_GAP, KEYS} from '../settings';
+import {SVG_NS, PADDLE_HEIGHT, PADDLE_WIDTH, BOARD_GAP, KEYS, RADIUS} from '../settings';
 import Board from './Board';
 import Paddle from './Paddle';
+import Ball from './Ball';
 
 export default class Game {
   constructor(element, width, height) {
     this.element = element;
     this.width = width;
     this.height = height;
-    
+
     this.gameElement = document.getElementById(this.element);
     this.board = new Board(this.width, this.height);
     const boardMid = (this.height - PADDLE_HEIGHT)/2; 
     this.paddle1 = new Paddle(this.height, PADDLE_WIDTH, PADDLE_HEIGHT, BOARD_GAP, boardMid, KEYS.p1up, KEYS.p1down);
     const paddle2Gap = this.width-BOARD_GAP-PADDLE_WIDTH;
     this.paddle2 = new Paddle(this.height, PADDLE_WIDTH, PADDLE_HEIGHT, paddle2Gap, boardMid, KEYS.p2up, KEYS.p2down);
-		// Other code goes here...
+    this.ball = new Ball(this.width, this.height, RADIUS);
+    // Other code goes here...
   }
 
   render() {
@@ -29,5 +31,6 @@ export default class Game {
     this.board.render(svg);
     this.paddle1.render(svg);
     this.paddle2.render(svg);
+    this.ball.render(svg);
   }
 }

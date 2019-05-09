@@ -7,3 +7,4 @@ export const KEYS = {
     p2down: 'ArrowDown',
     pause: 'p'
 };
+export const RADIUS = 8;
