@@ -37,6 +37,23 @@ export default class Paddle {
         this.y = Math.min(this.boardHeight-this.paddleHeight, this.y + this.speed);
     }
 
+    paddleSizeChange() {
+        switch(this.score) {
+            case 4:
+            case 7:
+            case 9:
+            this.paddleHeight = this.paddleHeight * 2 / 3;
+            break;
+          }
+    }
+
+    endGame() {
+        if (this.score ===10) {
+            alert("Game Over");
+            document.location.reload();
+        }
+    }
+    
     getCoordinates(){
         const walls = {
             left : this.x,

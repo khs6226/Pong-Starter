@@ -1,5 +1,7 @@
-import {SVG_NS} from '../settings';
-import audioFile from '../../public/sounds/pong-01.wav';
+import {SVG_NS, KEYS} from '../settings';
+import cat1 from '../../public/sounds/cat1.wav';
+import cat2 from '../../public/sounds/cat2.mp3';
+import goal from '../../public/sounds/goal.mp3';
 
 export default class Ball {
   constructor(boardWidth, boardHeight, radius) {
@@ -7,7 +9,9 @@ export default class Ball {
       this.boardHeight = boardHeight;
       this.radius = radius;
       this.direction = -1;
-      this.ping = new Audio(audioFile);
+      this.cat1 = new Audio(cat1);
+      this.cat2 = new Audio(cat2);
+      this.goal = new Audio(goal);
       this.reset();
   }
   
@@ -16,13 +20,19 @@ export default class Ball {
     this.y = this.boardHeight/2;
     this.vy = 0;
     this.vx = 0;
-    while (this.vy === 0){
-      this.vy = Math.floor(Math.random()*4 - 2);
-    }
-    this.vx = this.direction * (3-Math.abs(this.vy));
-    console.log(this.vx);
-    console.log(this.vy);
+    if(document.addEventListener('keydown', (event) => {
+      if(event.key === KEYS.start) {
+        while (this.vy === 0){
+          this.vy = Math.floor(Math.random()*4 - 2);
+        }
+        this.vx = this.direction * (3-Math.abs(this.vy));
+      }
+    }));
   }
+
+  // endGame(player1, player2) {
+  //   player1.score
+  // }
 
   wallCollision() {
     const hitsTop = this.y - this.radius <= 0;
@@ -36,11 +46,17 @@ export default class Ball {
     if (this.x <= 0) {
       player2.increaseScore();
       this.direction = this.direction * -1;
+      this.goal.play();
+      player2.paddleSizeChange();
       this.reset();
+      player2.endGame();
     } else if (this.x >= this.boardWidth) {
       player1.increaseScore();
       this.direction = this.direction * -1;
+      this.goal.play();
+      player1.paddleSizeChange();
       this.reset();
+      player1.endGame();
     }
   }
 
@@ -51,7 +67,7 @@ export default class Ball {
           this.x + this.radius <= p2.right &&
           this.y + this.radius >= p2.top &&
           this.y - this.radius <= p2.bottom) {
-            this.ping.play();
+            this.cat1.play();
             this.vx = this.vx * -1;
           }
     } else {
@@ -60,7 +76,7 @@ export default class Ball {
           this.x - this.radius >= p1.left &&
           this.y + this.radius >= p1.top &&
           this.y - this.radius <= p1.bottom) {
-            this.ping.play();
+            this.cat2.play();
             this.vx = this.vx * -1;
         }
       }

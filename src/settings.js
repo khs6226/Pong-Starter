@@ -5,5 +5,6 @@ export const KEYS = {
     p1down: 's',
     p2up: 'ArrowUp',
     p2down: 'ArrowDown',
-    pause: 'p'
+    pause: 'p',
+    start: ' '
 };

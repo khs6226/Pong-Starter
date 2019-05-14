@@ -1,4 +1,4 @@
-import {SVG_NS, PADDLE_HEIGHT, PADDLE_WIDTH, BOARD_GAP, KEYS, RADIUS} from '../settings';
+import {SVG_NS, PADDLE_HEIGHT, PADDLE_WIDTH, BOARD_GAP, KEYS, RADIUS,} from '../settings';
 import Board from './Board';
 import Paddle from './Paddle';
 import Ball from './Ball';
@@ -46,5 +46,6 @@ export default class Game {
     this.score1.render(svg, this.paddle1.getScore());
     this.score2.render(svg, this.paddle2.getScore());
   }
+
 }
 
