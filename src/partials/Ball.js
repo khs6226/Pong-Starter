@@ -29,6 +29,7 @@ export default class Ball {
       }
     }));
   }
+
   reset(){
     this.x = this.boardWidth/2;
     this.y = this.boardHeight/2;
@@ -100,6 +101,5 @@ export default class Ball {
     this.paddleCollision(player1, player2);
     this.goalCollision(player1, player2);
     svg.appendChild(circle);
-
   }
 }

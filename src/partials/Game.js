@@ -29,7 +29,6 @@ export default class Game {
         this.paused = !this.paused;
       }
     });
-    // Other code goes here...
   }
 
   render() {
