@@ -47,9 +47,9 @@ export default class Paddle {
           }
     }
 
-    endGame() {
-        if (this.score ===10) {
-            alert("Game Over");
+    endGame(text) {
+        if (this.score === 15) {
+            alert(text);
             document.location.reload();
         }
     }

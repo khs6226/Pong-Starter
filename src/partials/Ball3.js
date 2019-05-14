@@ -3,7 +3,7 @@ import cat1 from '../../public/sounds/cat1.wav';
 import cat2 from '../../public/sounds/cat2.mp3';
 import goal from '../../public/sounds/goal.mp3';
 
-export default class Ball {
+export default class Ball2 {
   constructor(boardWidth, boardHeight, radius) {
       this.boardWidth = boardWidth;
       this.boardHeight = boardHeight;
@@ -15,31 +15,32 @@ export default class Ball {
       this.start();
   }
   
-  start() {
+  start(){
     this.x = this.boardWidth/2;
-    this.y = this.boardHeight/2;
+    this.y = this.boardHeight/3;
     this.vy = 0;
     this.vx = 0;
     if(document.addEventListener('keydown', (event) => {
       if(event.key === KEYS.start) {
         while (this.vy === 0){
-          this.vy = Math.floor(Math.random()*5 - 2.5);
-          this.vx = this.direction * (4-Math.abs(this.vy));
+          this.vy = Math.floor(Math.random()*2 - 1);
+          this.vx = this.direction * (2-Math.abs(this.vy));
         }
       }
     }));
   }
+
   reset(){
     this.x = this.boardWidth/2;
     this.y = this.boardHeight/2;
     this.vy = 0;
     this.vx = 0;
     while (this.vy === 0){
-      this.vy = Math.floor(Math.random()*5 - 2.5);
+      this.vy = Math.floor(Math.random()*2 - 1);
     }
-    this.vx = this.direction * (4-Math.abs(this.vy));
+    this.vx = this.direction * (2-Math.abs(this.vy));
   }
-    
+
   wallCollision() {
     const hitsTop = this.y - this.radius <= 0;
     const hitsBottom = this.y + this.radius >= this.boardHeight;
@@ -90,7 +91,7 @@ export default class Ball {
 
   render(svg, player1, player2){
     let circle = document.createElementNS(SVG_NS, 'circle');
-    circle.setAttributeNS(null, "fill", "white");
+    circle.setAttributeNS(null, "fill", "lightgreen");
     circle.setAttributeNS(null, "r", this.radius);
     circle.setAttributeNS(null, "cx", this.x);
     circle.setAttributeNS(null, "cy", this.y);
