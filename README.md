@@ -18,24 +18,8 @@ Once you run the start command you can access your project at http://localhost:3
 
 Read more about the [Parcel web application bundler here](https://parceljs.org/).
 
-## Deploy
-
-The deployment workflow for this project will be a bit different from what you've used when deploying simple static websites.
-
-To deploy your finished Pong project as a GitHub page, you must first **update the `predeploy` script in the `package.json` file with the name of your repo.**
-
-For example, if your repo URL is:
-
-https://github.com/bob/pong-project
-
-Update the `predeploy` script as follows:
-
-```json
-"predeploy": "rm -rf dist && parcel build index.html --public-url /pong-project",
-```
-
-Once you have done this, you can run:
-
-`$ npm run deploy`
-
-Now check out your deployed site 🙂
+## Features
+* At 15 points, the winner is declared.
+* Paddle shrinks(by 2/3) when a player reaches 4, 7, 9 points.
+* When both player reach 3 and 7 points a new ball is added to the game.
+* New balls have slower speed.
