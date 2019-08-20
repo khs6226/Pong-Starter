@@ -1,4 +1,5 @@
 import {SVG_NS, SPEED} from '../settings';
+import gameEnd from './gameEnd';
 
 export default class Paddle {
     constructor(boardHeight, paddleWidth, paddleHeight, initialX, initialY, keyUp, keyDown) {
@@ -9,6 +10,8 @@ export default class Paddle {
         this.y = initialY;
         this.score = 0;
         this.speed = SPEED;
+        this.gameEnd = new gameEnd(150, 128);
+        this.paused = false;
         document.addEventListener("keydown", event => {
             switch(event.key) {
                 case keyUp:
@@ -31,26 +34,26 @@ export default class Paddle {
     
     moveUp() { 
         this.y = Math.max(0, this.y-this.speed);
-        }
+    }
     
     moveDown() {
         this.y = Math.min(this.boardHeight-this.paddleHeight, this.y + this.speed);
+    }
+
+    paddleStop() {
+        this.speed = 0;
+    }
+    
+    paddleRecover() {
+        this.speed = SPEED;
     }
 
     paddleSizeChange() {
         switch(this.score) {
             case 4:
             case 7:
-            case 9:
             this.paddleHeight = this.paddleHeight * 2 / 3;
             break;
-          }
-    }
-
-    endGame(text) {
-        if (this.score === 15) {
-            alert(text);
-            document.location.reload();
         }
     }
     
