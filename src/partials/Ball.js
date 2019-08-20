@@ -56,14 +56,12 @@ export default class Ball {
       this.goal.play();
       player2.paddleSizeChange();
       this.reset();
-      player2.endGame("Right side win!");
     } else if (this.x >= this.boardWidth) {
       player1.increaseScore();
       this.direction = this.direction * -1;
       this.goal.play();
       player1.paddleSizeChange();
       this.reset();
-      player1.endGame("Left side win!");
     }
   }
 
@@ -89,14 +87,14 @@ export default class Ball {
       }
     }
 
-  render(svg, player1, player2){
+  render(svg, player1, player2, color, speed){
     let circle = document.createElementNS(SVG_NS, 'circle');
-    circle.setAttributeNS(null, "fill", "white");
+    circle.setAttributeNS(null, "fill", color);
     circle.setAttributeNS(null, "r", this.radius);
     circle.setAttributeNS(null, "cx", this.x);
     circle.setAttributeNS(null, "cy", this.y);
-    this.x += this.vx;
-    this.y += this.vy;
+    this.x += this.vx*speed;
+    this.y += this.vy*speed;
     this.wallCollision();
     this.paddleCollision(player1, player2);
     this.goalCollision(player1, player2);
