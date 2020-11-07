@@ -6,7 +6,7 @@
   "author": "Hongsoon Kim <khsun6226@naver.com>",
   "main": "src/index.js",
   "scripts": {
-    "start": "parcel index.html -p 3000",
+    "start": "parcel index.html -p process.env.PORT",
     "predeploy": "rm -rf dist && parcel build index.html --public-url /Pong-Starter",
     "deploy": "gh-pages -d dist"
   },
