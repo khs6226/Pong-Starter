@@ -1,6 +1,7 @@
 # Pong Game Starter
 
 A basic pong game made with JavaScript using SVGs.
+
 Visit https://ping-pong-game-hongsoon.herokuapp.com/ to play!
 
 ## Setup
